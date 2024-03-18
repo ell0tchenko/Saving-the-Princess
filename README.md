@@ -1,7 +1,10 @@
 # Saving-the-Princess
 
 Embark on a thrilling quest in the ultimate game of fate: 'Saving the Princess'! Whether you choose to rescue royalty or lead your everyday life, the power lies in your hands... and your Tetris skills! Navigate through blocks and brave dragon battles to emerge as the hero of this epic adventure. Are you ready to shape your destiny and seize the glory that awaits?
-![alt text](assets/icons/princess_joy.png)
+
+<p align="center">
+  <img src="assets/icons/princess_joy.png" alt="princess">
+</p>
 
 ## Running the program
 
