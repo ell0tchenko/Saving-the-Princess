@@ -14,9 +14,9 @@ You can run the code with:
 ```
 go run .
 ```
-The application will start on **port 8080**. Go to localhost:8080 on your browser.
-You can play forever in **endless mode**.
-Or you can make it purposeful and **start campaign**.
+The application will start on **port 8080**. Go to localhost:8080 on your browser.  
+You can play forever in **endless mode**.  
+Or you can make it purposeful and **start campaign**.  
 Enjoy!
 
 ## Authors
