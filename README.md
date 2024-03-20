@@ -23,5 +23,5 @@ Or you can make it purposeful and **start campaign**.
 Enjoy!  
 
 ## Authors
-@vkarpins \
-@eotchenk
+Elina Otchenko
+Victoria Karpinska
