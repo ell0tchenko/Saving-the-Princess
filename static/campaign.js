@@ -10,7 +10,7 @@ export let campaignStart = false;
 export function startCampaignWindow() {
     const startCampaign = document.querySelector('.start-campaign-button');
     startCampaign.addEventListener('click', () => {
-        // currentAudioElement.play();
+        currentAudioElement.play();
         campaignStart = true;
         const startOverlay = document.querySelector('.start-overlay');
         const startBtn = document.querySelector('.start-campaign-button');
@@ -163,6 +163,18 @@ export function fifthPage() {
     });
 }
 
+export function endCleaner() {
+    let princessResponse1 = document.querySelector('.princess-response1')
+    let princessResponse2 = document.querySelector('.princess-response2')
+    let goodbyeText = document.querySelector('.goodbye-text')
+    princessResponse2.style.animation = "none"
+    princessResponse2.offsetHeight
+    princessResponse2.style.animation = null
+    princessResponse1.textContent = ''
+    princessResponse2.textContent = ''
+    goodbyeText.textContent = ''
+}
+
 export function ending() {
     const endingOverlay = document.querySelector('.ending-overlay');
     const goodbyeOverlay = document.querySelector('.goodbye-overlay');
@@ -179,13 +191,79 @@ export function ending() {
     princessResponse2.textContent = 'I guess I have to say "thank you"?';
     button1.textContent = 'I did it just because of the audits ratio';
     button2.textContent = 'Will you marry me?';
-    button2.addEventListener('click', () => {
-        // Handling button click event...
-    });
-    button1.addEventListener('click', () => {
-        // Handling button click event...
-    });
-    backtomenuBtn.addEventListener('click', () => {
-        location.reload();
-    });
+    button2.addEventListener('click', function () {
+        endCleaner()
+        princessImg.src = './assets/icons/princess_amus.png'
+        princessResponse1.textContent = 'Marry you? Everything is going so fast, I\'m not sure I\'m ready.'
+        princessResponse2.textContent = 'Let\'s be friends.'
+        button1.hidden = true
+        button2.hidden = true
+        setTimeout(() => {
+            goodbyeOverlay.classList.add('show-overlay')
+            goodbyeText.textContent = 'Congratulations! You unlocked the first of four endings. I don\'t think you should be so pushy, dude.'
+        }, 4000)
+    })
+    button1.addEventListener('click', function () {
+        endCleaner()
+        princessImg.src = './assets/icons/princess_anger.png'
+        princessResponse1.textContent = 'What?? I thought you were different.'
+        princessResponse2.textContent = 'But you are like all of them...'
+        button1.textContent = 'I don\'t even like you'
+        button2.textContent = 'I am sorry, that\'s not what I meant'
+        button1.classList.add('step-2-1')
+        button2.classList.add('step-2-2')
+        if (button1.classList.contains('step-2-1') && button2.classList.contains('step-2-2')) {
+            button1.addEventListener('click', function () {
+                endCleaner()
+                princessImg.src = './assets/icons/princess_amus.png'
+                princessResponse1.textContent = 'Then why did you help me??'
+                princessResponse2.textContent = 'That\'s so stupid!'
+                button1.textContent = 'I just like cheese "Cheetos" too'
+                button2.textContent = 'I just like bacon "Cheetos" too'
+                button1.classList.add('step-3-1')
+                button2.classList.add('step-3-2')
+                if (button1.classList.contains('step-3-1') && button2.classList.contains('step-3-2')) {
+                    button1.addEventListener('click', function () {
+                        endCleaner()
+                        princessImg.src = './assets/icons/princess_joy.png'
+                        princessResponse1.textContent = 'Cheese "Cheetos"? We\'re so alike...'
+                        princessResponse2.textContent = 'Maybe we\'ll go to the "Monk" one day, huh?'
+                        button1.hidden = true
+                        button2.hidden = true
+                        setTimeout(() => {
+                            goodbyeOverlay.classList.add('show-overlay')
+                            goodbyeText.textContent = 'Congratulations! You unlocked the best of four endings. Do not choke on your vanity, pf.'
+                        }, 4000)
+                    })
+                    button2.addEventListener('click', function () {
+                        endCleaner()
+                        princessImg.src = './assets/icons/princess_anger.png'
+                        princessResponse1.textContent = 'Bacon "Cheetos"?! I hate them!'
+                        princessResponse2.textContent = 'Just like I hate you!!!!!'
+                        button1.hidden = true
+                        button2.hidden = true
+                        setTimeout(() => {
+                            goodbyeOverlay.classList.add('show-overlay')
+                            goodbyeText.textContent = 'Congratulations! You unlocked the worst of four endings.. Wow, didn\'t even know that it could be so-o-o bad. I am proud of your miserability!'
+                        }, 4000)
+                    })
+                }
+            })
+            button2.addEventListener('click', function () {
+                endCleaner()
+                princessImg.src = './assets/icons/princess_amus.png'
+                princessResponse1.textContent = 'Ugh.. you such... Can you finally stop making excuses?'
+                princessResponse2.textContent = 'I don\'t want to know you anymore!'
+                button1.hidden = true
+                button2.hidden = true
+                setTimeout(() => {
+                    goodbyeOverlay.classList.add('show-overlay')
+                    goodbyeText.textContent = 'Congratulations! You unlocked the worst of four endings. Keep up, dude, you\'ll definitely be single for the rest of your life.'
+                }, 4000)
+            })
+        }
+    })
+    backtomenuBtn.addEventListener('click', function () {
+        location.reload()
+    })
 }

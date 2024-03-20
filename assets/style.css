@@ -30,8 +30,8 @@
 }
 
 .score-row {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .arrow-container {
@@ -90,10 +90,9 @@ ul {
     position: absolute;
 
     margin: auto;
-    /* padding-top: 6em; */
+    padding: 40px 0;
 
-    width: 90%;
-    height: 90%;
+    width: 70%;
 
     overflow: scroll;
     scrollbar-width: none;
@@ -114,14 +113,9 @@ ul {
 }
 
 .first-image {
-    width: 300px;
-    height: 300px;
+    max-width: 500px;
+    max-height: 500px;
 }
-
-/* .princess-image {
-    width: 180px;
-    height: 300px;
-} */
 
 .image-container {
     display: flex;
@@ -130,7 +124,6 @@ ul {
 }
 
 .plot-text,
-/* .princess-image,*/
 .first-image {
     opacity: 0;
     transition: opacity 1s ease-in 2s forwards;
@@ -139,7 +132,6 @@ ul {
 
 .plot-text1 {
     opacity: 0;
-    /* transition: opacity 3s ease-in 10s forwards; */
     animation: fadeIn 1s ease 2s forwards;
 }
 
@@ -155,9 +147,7 @@ ul {
 }
 
 .arrow {
-    /* opacity: 1; */
     opacity: 0;
-    /* transition: opacity 1s ease-in 1s forwards; */
     animation: fadeIn 1s ease 1s forwards;
     height: 50px;
     width: 100px;
@@ -189,6 +179,19 @@ ul {
     font-size: 25pt;
     font-weight: bold;
     padding-bottom: 1rem;
+}
+
+#warning {
+    font-size: 25pt;
+    text-align: center;
+    font-weight: 600;
+    color: hotpink;
+    margin: 3rem 0 1rem 0;
+}
+
+#warn-text {
+    max-width: 360px;
+    font-size: 14pt;
 }
 
 .start-game-buttons {
@@ -239,7 +242,7 @@ ul {
 
 #main {
     overflow: hidden;
-
+    background-color: rgba(225, 225, 225, 0.8);
     position: relative;
 
     width: 352px;
@@ -250,8 +253,6 @@ ul {
 }
 
 .score-timer-container {
-    /* display: flex; */
-    /* flex-direction: column; */
     display: inline-block;
     position: relative;
 }
@@ -285,7 +286,6 @@ ul {
     height: 20rem;
 
     margin-top: 2.2rem;
-    /* min-width: 100px; */
 
     border: 1px solid black;
     border-right: none;
@@ -293,9 +293,7 @@ ul {
 }
 
 .dragoncontainer {
-    position: absolute;
-    left: calc(100vw - 30%);
-    top: calc(50vh - 150px);
+
     z-index: -1;
     display: flex;
     justify-content: center;
@@ -534,14 +532,12 @@ ul {
     /* z-index: 3; */
     position: absolute;
     bottom: 0;
-    left: 0;
 }
 
 .firecontainer1 {
     /* z-index: 4; */
     position: absolute;
-    top: 22rem;
-    left: 0;
+    left: calc(50vw - 226px);
 }
 
 .firecontainer2 {
@@ -572,7 +568,7 @@ ul {
 
 .ending-container {
     margin: 0 auto;
-    padding-top: 6em;
+    padding-top: 10vh;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -588,7 +584,6 @@ ul {
     display: flex;
     justify-content: flex-start;
     gap: 2rem;
-    padding-top: 3rem;
 }
 
 .princess-response1,
@@ -604,7 +599,40 @@ ul {
     width: 250px;
 }
 
+#dragon1 {
+    position: absolute;
+    left: calc(100vw - 30%);
+    top: calc(50vh - 150px);
+}
+
+#dragon2 {
+    position: absolute;
+    left: calc(100vw - 30%);
+    top: calc(50vh - 150px);
+}
+
+#dragon3 {
+    position: absolute;
+    left: calc(100vw - 30%);
+    top: calc(50vh - 380px);
+    transform: scaleX(-1);
+    z-index: -1;
+}
+
+.desktop-dragon2 {
+    top: calc(50vh - 215px);
+    left: 65%;
+}
+
+.desktop-dragon3 {
+    left: calc(10vw - 120px) !important;
+}
+
 @media (max-height: 850px) or (max-width: 1024px) {
+    .princess-container {
+        max-width: 200px;
+    }
+
     #homepage-princess {
         width: 250px;
     }
@@ -620,21 +648,64 @@ ul {
     }
 
     .control-options {
-        font-size: 12pt;
+        font-size: 15pt;
     }
 
     li {
         font-size: 10pt;
     }
 
-    .dragoncontainer {
+    #warning {
+        font-size: 15pt;
+        font-weight: 500;
+    }
+    
+    #warn-text {
+        font-size: 10pt;
+    }
+    
+
+    #dragon1 {
         width: 200px;
         left: calc(50vw - 75px);
         top: calc((100vh - 750px) / 2);
     }
 
+    #dragon2 {
+        width: 200px;
+        left: calc(50vw - 75px);
+        top: calc((100vh - 800px) / 2);
+    }
 
+    .mobile-dragon2 {
+        top: calc((100vh - 750px) / 2) !important;
+        left: calc(50vw - 100px) !important;
+        width: 300px !important;
+    }
 
+    .mobile-dragon3 {
+        width: 600px !important;
+        left: calc(50vw - 120px) !important;
+        top: calc((50vh - 480px) / 2) !important;
+        z-index: 4 !important;
+    }
+
+    #dragon3 {
+        width: 300px;
+        left: calc(50vw - 120px);
+        top: calc((100vh - 850px) / 2);
+    }
+
+    .princess-response1,
+    .princess-response2 {
+        font-size: 15pt;
+    }
+
+    .butt-1,
+    .butt-2 {
+        font-size: 13pt;
+        margin-top: 5vh;
+    }
 
     #main {
         width: 252px;
@@ -701,10 +772,41 @@ ul {
         font-size: 18pt;
     }
 
+    .plot-container {
+        width: 90%;
+        padding: 30px 0;
+    }
+
     .arrow {
         margin-top: 1rem;
         height: 40px;
         width: 75px;
+    }
+
+    .firecontainer {
+        width: 300px;
+    }
+
+    .firecontainer1 {
+        z-index: 4;
+        width: 40px;
+        left: calc(50vw - 140px);
+        bottom: calc(50vh + 30px);
+    }
+
+    .next-level-overlay {
+        width: 300px;
+        height: fit-content;
+    }
+
+    .response {
+        font-size: 15pt;
+    }
+
+    .stop-btn,
+    .next-level-btn {
+        font-size: 13pt;
+        margin: 0 5px;
     }
 }
 
@@ -746,62 +848,3 @@ ul {
     }
 
 }
-
-/*
-@media only screen and (max-width: 480px) {
-
-    .maincontainer {
-        flex-direction: column;
-        margin-left: 0;
-    }
-
-    .dragoncontainer {
-        margin-left: 0;
-    }
-
-    #main {
-        width: 100%;
-        height: auto;
-    }
-
-    .input-container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .score,
-    .timer {
-        width: 48%;
-        font-size: 14px;
-    }
-
-    .controlscontainer {
-        flex-direction: row;
-        height: auto;
-    }
-
-    #player-container {
-        margin-right: 10px;
-    }
-
-    #player-container button {
-        padding: 8px 12px;
-    }
-
-    .firecontainer,
-    .firecontainer1,
-    .firecontainer2 {
-        display: none;
-    }
-
-    .wrapper {
-        position: static;
-    }
-
-    .background-container::before {
-        content: "";
-        background-size: contain;
-        filter: brightness(0.8);
-    }
-}
-*/

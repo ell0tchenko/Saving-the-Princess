@@ -217,9 +217,11 @@ function restartGame() {
         if (level === 1) {
             speed = 500
             dragonImg.src = './assets/icons/dragon1.1.png'
+            dragonImg.setAttribute("id", "dragon1")
         } else if (level === 2) {
             speed = 300
             dragonImg.src = './assets/icons/dragon2.1.png'
+            dragonImg.setAttribute("id", "dragon2")
             fire.src = ''
             fire1.src = ''
             fire2.src = ''
@@ -227,6 +229,7 @@ function restartGame() {
             speed = 200
             dragonContainer.style.marginLeft = '50rem'
             dragonImg.src = './assets/icons/dragon3.1.png'
+            dragonImg.setAttribute("id", "dragon3")
             fire.src = ''
             fire1.src = ''
             fire2.src = ''
@@ -344,6 +347,7 @@ function campaignLevel1() {
     if (campaignStart) {
         if (score === 0) {
             dragonImg.src = './assets/icons/dragon1.1.png'
+            dragonImg.setAttribute("id", "dragon1")
         }
         // controlsContainer.style.marginRight = '15rem'
     }
@@ -377,6 +381,7 @@ function campaignLevel2() {
 
     let dragonImg = document.querySelector('.dragon')
     dragonImg.src = './assets/icons/dragon2.1.png'
+    dragonImg.setAttribute("id", "dragon2")
 
     let backContainer = document.querySelector('.background-container')
     backContainer.style.setProperty('--background-image', "url('./icons/lvl2.png')")
@@ -424,6 +429,7 @@ function campaignLevel3() {
 
     let dragonImg = document.querySelector('.dragon')
     dragonImg.src = './assets/icons/dragon3.1.png'
+    dragonImg.setAttribute("id", "dragon3")
 
     let backContainer = document.querySelector('.background-container')
     backContainer.style.setProperty('--background-image', "url('./icons/lvl3.png')")
@@ -740,19 +746,19 @@ function figuresRemover() {
                                 }
                                 break
                             case 2:
-                                if (score >= 80 && score <= 140) {
-                                    fire.src = './assets/icons/fire1.png'
-                                }
-                                if (score >= 80 && score <= 140) {
-                                    fire1.src = './assets/icons/fire2.png'
-                                }
                                 if (score >= 110 && score <= 140) {
                                     fire2.src = './assets/icons/fire3.png'
                                     controlBtn.disabled = true
                                 }
+                                if (score >= 80 && score <= 140) {
+                                    fire.src = './assets/icons/fire1.png'
+                                    fire1.src = './assets/icons/fire2.png'
+                                }
 
                                 if (score >= 60 && score <= 140) {
                                     dragonImg.src = './assets/icons/dragon2.2.png'
+                                    dragonImg.classList.add("mobile-dragon2")
+                                    dragonImg.classList.add("desktop-dragon2")
                                     dragon()
                                 }
                                 if (score >= 100) {
@@ -763,6 +769,8 @@ function figuresRemover() {
                                 }
                                 break
                             case 3:
+                                dragonImg.classList.remove("mobile-dragon2")
+                                dragonImg.classList.remove("desktop-dragon2")
                                 if (score >= 120 && score <= 220) {
                                     fire.src = './assets/icons/fire1.png'
                                 }
@@ -776,6 +784,8 @@ function figuresRemover() {
 
                                 if (score >= 80 && score <= 220) {
                                     dragonImg.src = './assets/icons/dragon3.2.png'
+                                    dragonImg.classList.add("mobile-dragon3")
+                                    dragonImg.classList.add("desktop-dragon3")
                                     let dragonContainer = document.querySelector('.dragoncontainer')
                                     dragonContainer.style.marginLeft = '0'
                                 }
@@ -790,36 +800,36 @@ function figuresRemover() {
                                 break
                         }
                     }
-                        nextLevel()
+                    nextLevel()
 
-                        for (let row = 1; row < 11; row++) {
-                            document.querySelector(`[posX = "${row}"][posY = "${rows}"]`).classList.remove('deadfigure')
-                        }
-
-                        //falling down of all figures after removing whole row
-                        let deadfigure = document.querySelectorAll('.deadfigure')
-                        let newField = []
-
-                        for (let deadloop = 0; deadloop < deadfigure.length; deadloop++) {
-                            let deadCoords = [deadfigure[deadloop].getAttribute('posX'), deadfigure[deadloop].getAttribute('posY')]
-
-                            //for not changing place of rows that are under the removed row
-                            if (deadCoords[1] > rows) {
-                                deadfigure[deadloop].classList.remove('deadfigure')
-                                newField.push(document.querySelector(`[posX = "${deadCoords[0]}"][posY = "${deadCoords[1] - 1}"]`))
-                            }
-                        }
-
-                        //adding a class for changed field
-                        for (let d = 0; d < newField.length; d++) {
-                            newField[d].classList.add('deadfigure')
-                        }
-                        rows--
+                    for (let row = 1; row < 11; row++) {
+                        document.querySelector(`[posX = "${row}"][posY = "${rows}"]`).classList.remove('deadfigure')
                     }
+
+                    //falling down of all figures after removing whole row
+                    let deadfigure = document.querySelectorAll('.deadfigure')
+                    let newField = []
+
+                    for (let deadloop = 0; deadloop < deadfigure.length; deadloop++) {
+                        let deadCoords = [deadfigure[deadloop].getAttribute('posX'), deadfigure[deadloop].getAttribute('posY')]
+
+                        //for not changing place of rows that are under the removed row
+                        if (deadCoords[1] > rows) {
+                            deadfigure[deadloop].classList.remove('deadfigure')
+                            newField.push(document.querySelector(`[posX = "${deadCoords[0]}"][posY = "${deadCoords[1] - 1}"]`))
+                        }
+                    }
+
+                    //adding a class for changed field
+                    for (let d = 0; d < newField.length; d++) {
+                        newField[d].classList.add('deadfigure')
+                    }
+                    rows--
                 }
             }
         }
     }
+}
 
 
 function figuresRotater() {
